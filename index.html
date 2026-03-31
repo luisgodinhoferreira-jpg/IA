@@ -3,43 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Store | Exclusive Access</title>
+    <title>Fashion Store | 3D Experience</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="auth-container">
-        <div class="auth-box">
-            <h2>Bem-vindo à Fashion Store</h2>
-            <p>Cadastre-se para acessar nossa coleção exclusiva.</p>
+        <div class="cube-bg"></div> <div class="auth-box">
+            <div class="badge">Exclusive</div>
+            <h2>Fashion Store</h2>
+            <p>Cadastre-se para liberar a coleção 2024.</p>
             <form id="register-form">
                 <input type="text" placeholder="Nome Completo" required>
                 <input type="email" placeholder="E-mail" required>
                 <input type="password" placeholder="Senha" required>
-                <button type="submit">Criar Conta</button>
+                <button type="submit">Acessar Coleção</button>
             </form>
         </div>
     </div>
 
     <div id="shop-content" style="display: none;">
         <header>
-            <h1>Fashion Store</h1>
+            <h1>FASHION <span class="thin">STORE</span></h1>
             <nav>
-                <span>Olá, <strong id="user-name">Usuário</strong></span>
+                <span>Bem-vindo, <strong id="user-name">Usuário</strong></span>
             </nav>
         </header>
 
         <section class="products">
             <div class="product-card">
-                <div class="img-placeholder"></div>
+                <div class="img-placeholder" style="background-color: #d1d1d1;"></div>
                 <h3>Camiseta Oversized</h3>
                 <p>R$ 89,90</p>
                 <button>Comprar</button>
             </div>
             <div class="product-card">
-                <div class="img-placeholder"></div>
-                <h3>Jaqueta Jeans</h3>
-                <p>R$ 199,90</p>
+                <div class="img-placeholder" style="background-color: #c4c4c4;"></div>
+                <h3>Jaqueta Jeans Vintage</h3>
+                <p>R$ 249,00</p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card">
+                <div class="img-placeholder" style="background-color: #b5b5b5;"></div>
+                <h3>Calça Cargo Black</h3>
+                <p>R$ 159,90</p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card">
+                <div class="img-placeholder" style="background-color: #a8a8a8;"></div>
+                <h3>Moletom Minimalist</h3>
+                <p>R$ 129,90</p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card">
+                <div class="img-placeholder" style="background-color: #9e9e9e;"></div>
+                <h3>Tênis Urban White</h3>
+                <p>R$ 310,00</p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card">
+                <div class="img-placeholder" style="background-color: #8a8a8a;"></div>
+                <h3>Boné Streetwear</h3>
+                <p>R$ 55,00</p>
                 <button>Comprar</button>
             </div>
         </section>
