@@ -1,73 +1,76 @@
-let carrinho = [];
-
-// Função para adicionar ao carrinho
-function adicionarAoCarrinho(nome, preco) {
-    const valor = parseFloat(preco.replace('R$ ', '').replace(',', '.'));
-    carrinho.push({ nome, valor });
-    atualizarInterfaceCarrinho();
-    
-    // Feedback visual (opcional)
-    alert(`${nome} adicionado à sacola!`);
-}
-
-function atualizarInterfaceCarrinho() {
-    const lista = document.getElementById('cart-items');
-    const contador = document.getElementById('cart-count');
-    const totalElem = document.getElementById('cart-total');
-    
-    lista.innerHTML = '';
-    let total = 0;
-    
-    carrinho.forEach((item, index) => {
-        total += item.valor;
-        lista.innerHTML += `
-            <div class="cart-item">
-                <span>${item.nome}</span>
-                <span>R$ ${item.valor.toFixed(2)}</span>
-            </div>
-        `;
-    });
-    
-    contador.innerText = carrinho.length;
-    totalElem.innerText = `R$ ${total.toFixed(2)}`;
-}
-
-function toggleCart() {
-    document.getElementById('cart-sidebar').classList.toggle('active');
-}
-
-function goToCheckout() {
-    if(carrinho.length === 0) {
-        alert("Sua sacola está vazia!");
-        return;
-    }
-    toggleCart();
-    document.getElementById('products-view').style.display = 'none';
-    document.getElementById('checkout-section').style.display = 'block';
-}
-
-// Renderizar produtos com a função de clique
-const produtos = [
-    { nome: "Moletom Archive", preco: "R$ 490,00", cor: "#1a1a1a" },
-    { nome: "Calça Técnica", preco: "R$ 380,00", cor: "#151515" },
-    { nome: "Camiseta Essence", preco: "R$ 190,00", cor: "#1d1d1d" }
+let cart = [];
+const products = [
+    {id: 1, nome: "Blazer Alfaiataria", preco: 299.90},
+    {id: 2, nome: "Calça Jeans Slim", preco: 159.90},
+    {id: 3, nome: "Camisa Linho", preco: 129.90},
+    {id: 4, nome: "Vestido Midi", preco: 199.90}
 ];
 
-const grid = document.getElementById('grid');
-produtos.forEach(p => {
-    grid.innerHTML += `
-        <div class="product-card">
-            <div style="width: 100%; height: 100%; background: ${p.cor}; position: absolute; top:0; left:0; z-index:-1"></div>
-            <h3>${p.nome}</h3>
-            <span>${p.preco}</span>
-            <button class="buy-btn" onclick="adicionarAoCarrinho('${p.nome}', '${p.preco}')">ADICIONAR</button>
-        </div>
-    `;
+// 1. LOGIN
+document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('user-input').value;
+    document.getElementById('client-name').innerText = name;
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('shop-screen').classList.remove('hidden');
+    renderProducts();
 });
 
-// Finalizar pedido
-document.getElementById('checkout-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert("Pedido realizado com sucesso! Você receberá a confirmação por e-mail.");
-    location.reload(); // Reinicia a loja
-});
+// 2. RENDERIZAR PRODUTOS
+function renderProducts() {
+    const container = document.getElementById('product-container');
+    container.innerHTML = products.map(p => `
+        <div class="card">
+            <div class="img-box"></div>
+            <h3>${p.nome}</h3>
+            <p>R$ ${p.preco.toFixed(2)}</p>
+            <button onclick="addToCart(${p.id})">ADICIONAR À SACOLA</button>
+        </div>
+    `).join('');
+}
+
+// 3. CARRINHO
+function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    cart.push(product);
+    updateCartUI();
+    toggleCart(true); // Abre o carrinho ao adicionar
+}
+
+function updateCartUI() {
+    document.getElementById('cart-num').innerText = cart.length;
+    const list = document.getElementById('cart-list');
+    const total = cart.reduce((sum, item) => sum + item.preco, 0);
+    
+    list.innerHTML = cart.map(item => `
+        <div class="item-carrinho">
+            <span>${item.nome}</span>
+            <span>R$ ${item.preco.toFixed(2)}</span>
+        </div>
+    `).join('');
+    
+    document.getElementById('total-price').innerText = `R$ ${total.toFixed(2)}`;
+}
+
+function toggleCart(forceOpen = false) {
+    const side = document.getElementById('cart-sidebar');
+    if(forceOpen) side.classList.add('active');
+    else side.classList.toggle('active');
+}
+
+// 4. CHECKOUT
+function showCheckout() {
+    if(cart.length === 0) return alert("Sacola vazia!");
+    document.getElementById('shop-screen').classList.add('hidden');
+    document.getElementById('checkout-screen').classList.remove('hidden');
+}
+
+function hideCheckout() {
+    document.getElementById('checkout-screen').classList.add('hidden');
+    document.getElementById('shop-screen').classList.remove('hidden');
+}
+
+function finishOrder() {
+    alert("Pedido confirmado! Obrigado por comprar na Arquivo Moderno.");
+    location.reload();
+}
