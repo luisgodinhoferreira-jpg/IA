@@ -1,60 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODERN ARCHIVE | Premium Wear</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div id="auth-container">
-        <div class="floating-shapes">
-            <div class="shape s1"></div>
-            <div class="shape s2"></div>
+<main id="shop-content" style="display: none;">
+    <nav class="navbar">
+        <div class="logo">A<span>M</span></div>
+        <div class="nav-info">
+            <span id="user-display">CLIENTE</span>
         </div>
-        
-        <div class="auth-card" id="tilt-card">
-            <div class="card-content">
-                <span class="tag">EST. 2024</span>
-                <h1>MODERN<br>ARCHIVE</h1>
-                <p>Acesse o catálogo restrito de peças exclusivas.</p>
-                
-                <form id="register-form">
-                    <div class="input-group">
-                        <input type="text" id="name-input" placeholder=" " required>
-                        <label>Nome Completo</label>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" placeholder=" " required>
-                        <label>E-mail Corporativo</label>
-                    </div>
-                    <button type="submit" class="btn-glow">DESBLOQUEAR ACESSO</button>
-                </form>
+        <div class="cart-icon" onclick="toggleCart()">
+            SACOLA (<span id="cart-count">0</span>)
+        </div>
+    </nav>
+
+    <div id="cart-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Sua Sacola</h2>
+            <button onclick="toggleCart()">X</button>
+        </div>
+        <div id="cart-items">
             </div>
+        <div class="sidebar-footer">
+            <div class="total">Total: <span id="cart-total">R$ 0,00</span></div>
+            <button class="btn-glow" onclick="goToCheckout()">FINALIZAR COMPRA</button>
         </div>
     </div>
 
-    <main id="shop-content" style="display: none;">
-        <nav class="navbar">
-            <div class="logo">M<span>A</span></div>
-            <div class="nav-info">
-                <span>COLLECTION_001</span>
-                <span id="user-display">CLIENTE</span>
-            </div>
-            <div class="cart-icon">BAG (0)</div>
-        </nav>
+    <section id="checkout-section" style="display: none; padding: 120px 5%;">
+        <h1>Finalizar Compra</h1>
+        <div class="checkout-container">
+            <form id="checkout-form">
+                <h3>1. Entrega</h3>
+                <input type="text" placeholder="CEP" required>
+                <input type="text" placeholder="Endereço e Número" required>
+                
+                <h3>2. Pagamento</h3>
+                <select required>
+                    <option value="">Selecione o método</option>
+                    <option value="pix">Pix (5% OFF)</option>
+                    <option value="cartao">Cartão de Crédito</option>
+                </select>
+                <input type="text" placeholder="Número do Cartão" id="card-info" style="display:none">
+                
+                <button type="submit" class="btn-glow">CONFIRMAR PEDIDO</button>
+            </form>
+        </div>
+    </section>
 
+    <div id="products-view">
         <header class="shop-hero">
-            <h2>NEW ARRIVALS</h2>
-            <p>Drop limitado. Peças numeradas.</p>
+            <h2>NOVIDADES</h2>
         </header>
-
-        <div class="product-grid" id="grid">
-            </div>
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <div class="product-grid" id="grid"></div>
+    </div>
+</main>
