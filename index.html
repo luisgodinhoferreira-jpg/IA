@@ -1,52 +1,63 @@
-<main id="shop-content" style="display: none;">
-    <nav class="navbar">
-        <div class="logo">A<span>M</span></div>
-        <div class="nav-info">
-            <span id="user-display">CLIENTE</span>
-        </div>
-        <div class="cart-icon" onclick="toggleCart()">
-            SACOLA (<span id="cart-count">0</span>)
-        </div>
-    </nav>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQUIVO MODERNO | Oficial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <div id="cart-sidebar" class="sidebar">
-        <div class="sidebar-header">
-            <h2>Sua Sacola</h2>
-            <button onclick="toggleCart()">X</button>
-        </div>
-        <div id="cart-items">
-            </div>
-        <div class="sidebar-footer">
-            <div class="total">Total: <span id="cart-total">R$ 0,00</span></div>
-            <button class="btn-glow" onclick="goToCheckout()">FINALIZAR COMPRA</button>
-        </div>
-    </div>
-
-    <section id="checkout-section" style="display: none; padding: 120px 5%;">
-        <h1>Finalizar Compra</h1>
-        <div class="checkout-container">
-            <form id="checkout-form">
-                <h3>1. Entrega</h3>
-                <input type="text" placeholder="CEP" required>
-                <input type="text" placeholder="Endereço e Número" required>
-                
-                <h3>2. Pagamento</h3>
-                <select required>
-                    <option value="">Selecione o método</option>
-                    <option value="pix">Pix (5% OFF)</option>
-                    <option value="cartao">Cartão de Crédito</option>
-                </select>
-                <input type="text" placeholder="Número do Cartão" id="card-info" style="display:none">
-                
-                <button type="submit" class="btn-glow">CONFIRMAR PEDIDO</button>
+    <div id="auth-screen" class="full-screen">
+        <div class="auth-card">
+            <h1>ARQUIVO<br>MODERNO</h1>
+            <p>Acesso exclusivo para membros.</p>
+            <form id="login-form">
+                <input type="text" id="user-input" placeholder="Nome Completo" required>
+                <input type="email" placeholder="E-mail" required>
+                <button type="submit">ENTRAR NA LOJA</button>
             </form>
         </div>
-    </section>
-
-    <div id="products-view">
-        <header class="shop-hero">
-            <h2>NOVIDADES</h2>
-        </header>
-        <div class="product-grid" id="grid"></div>
     </div>
-</main>
+
+    <main id="shop-screen" class="hidden">
+        <nav class="navbar">
+            <div class="logo">AM</div>
+            <div class="user-info">Olá, <span id="client-name">...</span></div>
+            <div class="cart-btn" onclick="toggleCart()">SACOLA (<span id="cart-num">0</span>)</div>
+        </nav>
+
+        <section class="products-grid" id="product-container"></section>
+    </main>
+
+    <aside id="cart-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Sua Sacola</h3>
+            <button onclick="toggleCart()">FECHAR</button>
+        </div>
+        <div id="cart-list"></div>
+        <div class="sidebar-footer">
+            <p>Total: <strong id="total-price">R$ 0,00</strong></p>
+            <button onclick="showCheckout()">FINALIZAR COMPRA</button>
+        </div>
+    </aside>
+
+    <div id="checkout-screen" class="full-screen hidden">
+        <div class="checkout-box">
+            <h2>Finalizar Pedido</h2>
+            <div class="checkout-form">
+                <input type="text" placeholder="CEP">
+                <input type="text" placeholder="Endereço">
+                <select>
+                    <option>Cartão de Crédito (10x)</option>
+                    <option>Pix (Desconto de 5%)</option>
+                </select>
+                <button onclick="finishOrder()">CONFIRMAR PAGAMENTO</button>
+                <button class="back-btn" onclick="hideCheckout()">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
