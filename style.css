@@ -1,44 +1,26 @@
-/* Sidebar da Sacola */
-.sidebar {
-    position: fixed;
-    right: -400px;
-    top: 0;
-    width: 350px;
-    height: 100%;
-    background: #111;
-    z-index: 1000;
-    transition: 0.5s;
-    padding: 30px;
-    border-left: 1px solid #333;
-}
-.sidebar.active { right: 0; }
+:root { --black: #000; --white: #fff; --gray: #f4f4f4; --accent: #e60014; } /* Vermelho Renner */
 
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #222;
-}
+body, html { margin: 0; padding: 0; font-family: sans-serif; background: var(--white); color: var(--black); }
+.hidden { display: none !important; }
+.full-screen { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--black); color: var(--white); }
+
+/* Login */
+.auth-card { text-align: center; border: 1px solid #333; padding: 50px; border-radius: 8px; }
+input, button, select { display: block; width: 100%; margin: 10px 0; padding: 12px; box-sizing: border-box; }
+button { background: var(--white); color: var(--black); font-weight: bold; border: none; cursor: pointer; }
+button:hover { opacity: 0.8; }
+
+/* Loja */
+.navbar { display: flex; justify-content: space-between; padding: 20px 5%; border-bottom: 1px solid var(--gray); position: sticky; top: 0; background: #fff; z-index: 10; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 5%; }
+.card { border: 1px solid var(--gray); padding: 15px; text-align: center; }
+.img-box { height: 250px; background: #eee; margin-bottom: 10px; }
+
+/* Carrinho Sidebar */
+.sidebar { position: fixed; right: -100%; top: 0; width: 350px; height: 100%; background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.3s; z-index: 100; padding: 20px; }
+.sidebar.active { right: 0; }
+.item-carrinho { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
 
 /* Checkout */
-.checkout-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #151515;
-    padding: 40px;
-    border-radius: 4px;
-}
-.checkout-container h3 { margin: 20px 0 10px; font-size: 14px; color: var(--accent); }
-
-/* Botão de Compra no Card */
-.buy-btn {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background: white;
-    color: black;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-}
+.checkout-box { background: var(--white); color: var(--black); padding: 40px; width: 90%; max-width: 400px; border-radius: 4px; }
+.back-btn { background: var(--gray); margin-top: 5px; }
