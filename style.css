@@ -1,44 +1,81 @@
-body { font-family: 'Arial', sans-serif; margin: 0; background: #f4f4f4; }
+/* Reset Básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
 
-/* Centraliza o cadastro */
+/* TELA DE INÍCIO 3D */
 #auth-container {
     height: 100vh;
+    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000;
-    color: white;
+    perspective: 1000px; /* Cria profundidade 3D */
 }
 
 .auth-box {
-    background: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    color: #333;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px;
+    border-radius: 15px;
+    width: 380px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: rotateY(-10deg) rotateX(5deg); /* Inclinação 3D */
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    transition: transform 0.5s ease;
+    z-index: 2;
 }
 
-form input {
-    display: block;
+.auth-box:hover {
+    transform: rotateY(0deg) rotateX(0deg); /* Endireita ao passar o mouse */
+}
+
+/* Cubo Decorativo Flutuante no Fundo */
+.cube-bg {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, #ff4d4d, #f9cb28);
+    opacity: 0.3;
+    animation: rotate3d 10s infinite linear;
+    z-index: 1;
+}
+
+@keyframes rotate3d {
+    from { transform: rotateX(0) rotateY(0); }
+    to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+/* Estilos de Formulário */
+.badge { font-weight: bold; font-size: 10px; color: #ff4d4d; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+h2 { margin-bottom: 20px; font-weight: 900; }
+input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
+button { width: 100%; padding: 12px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+button:hover { background: #333; }
+
+/* LOJA E PRODUTOS */
+header { background: #fff; padding: 25px 5%; border-bottom: 2px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.thin { font-weight: 200; }
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 50px 5%;
+    background: #fafafa;
+}
+
+.product-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.product-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+.img-placeholder {
     width: 100%;
-    margin: 10px 0;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    height: 300px;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
-
-button {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    width: 100%;
-}
-
-/* Estilo da Loja */
-header { background: #fff; padding: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; }
-.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px; }
-.product-card { background: #fff; padding: 15px; text-align: center; border-radius: 8px; }
-.img-placeholder { height: 200px; background: #eee; margin-bottom: 10px; }
