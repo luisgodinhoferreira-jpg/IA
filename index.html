@@ -3,72 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Store | 3D Experience</title>
+    <title>MODERN ARCHIVE | Premium Wear</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="auth-container">
-        <div class="cube-bg"></div> <div class="auth-box">
-            <div class="badge">Exclusive</div>
-            <h2>Fashion Store</h2>
-            <p>Cadastre-se para liberar a coleção 2024.</p>
-            <form id="register-form">
-                <input type="text" placeholder="Nome Completo" required>
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Acessar Coleção</button>
-            </form>
+        <div class="floating-shapes">
+            <div class="shape s1"></div>
+            <div class="shape s2"></div>
+        </div>
+        
+        <div class="auth-card" id="tilt-card">
+            <div class="card-content">
+                <span class="tag">EST. 2024</span>
+                <h1>MODERN<br>ARCHIVE</h1>
+                <p>Acesse o catálogo restrito de peças exclusivas.</p>
+                
+                <form id="register-form">
+                    <div class="input-group">
+                        <input type="text" id="name-input" placeholder=" " required>
+                        <label>Nome Completo</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" placeholder=" " required>
+                        <label>E-mail Corporativo</label>
+                    </div>
+                    <button type="submit" class="btn-glow">DESBLOQUEAR ACESSO</button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div id="shop-content" style="display: none;">
-        <header>
-            <h1>FASHION <span class="thin">STORE</span></h1>
-            <nav>
-                <span>Bem-vindo, <strong id="user-name">Usuário</strong></span>
-            </nav>
+    <main id="shop-content" style="display: none;">
+        <nav class="navbar">
+            <div class="logo">M<span>A</span></div>
+            <div class="nav-info">
+                <span>COLLECTION_001</span>
+                <span id="user-display">CLIENTE</span>
+            </div>
+            <div class="cart-icon">BAG (0)</div>
+        </nav>
+
+        <header class="shop-hero">
+            <h2>NEW ARRIVALS</h2>
+            <p>Drop limitado. Peças numeradas.</p>
         </header>
 
-        <section class="products">
-            <div class="product-card">
-                <div class="img-placeholder" style="background-color: #d1d1d1;"></div>
-                <h3>Camiseta Oversized</h3>
-                <p>R$ 89,90</p>
-                <button>Comprar</button>
+        <div class="product-grid" id="grid">
             </div>
-            <div class="product-card">
-                <div class="img-placeholder" style="background-color: #c4c4c4;"></div>
-                <h3>Jaqueta Jeans Vintage</h3>
-                <p>R$ 249,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder" style="background-color: #b5b5b5;"></div>
-                <h3>Calça Cargo Black</h3>
-                <p>R$ 159,90</p>
-                <button>Comprar</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder" style="background-color: #a8a8a8;"></div>
-                <h3>Moletom Minimalist</h3>
-                <p>R$ 129,90</p>
-                <button>Comprar</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder" style="background-color: #9e9e9e;"></div>
-                <h3>Tênis Urban White</h3>
-                <p>R$ 310,00</p>
-                <button>Comprar</button>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder" style="background-color: #8a8a8a;"></div>
-                <h3>Boné Streetwear</h3>
-                <p>R$ 55,00</p>
-                <button>Comprar</button>
-            </div>
-        </section>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
