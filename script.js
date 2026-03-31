@@ -1,48 +1,73 @@
-const products = [
-    { name: "Archive Hoodie", price: "R$ 490", color: "#1a1a1a" },
-    { name: "Technical Pant", price: "R$ 380", color: "#151515" },
-    { name: "Essence Tee", price: "R$ 190", color: "#1d1d1d" },
-    { name: "Structure Vest", price: "R$ 550", color: "#111" },
-    { name: "Ghost Sneaker", price: "R$ 890", color: "#222" },
-    { name: "Utility Bag", price: "R$ 320", color: "#181818" }
+let carrinho = [];
+
+// Função para adicionar ao carrinho
+function adicionarAoCarrinho(nome, preco) {
+    const valor = parseFloat(preco.replace('R$ ', '').replace(',', '.'));
+    carrinho.push({ nome, valor });
+    atualizarInterfaceCarrinho();
+    
+    // Feedback visual (opcional)
+    alert(`${nome} adicionado à sacola!`);
+}
+
+function atualizarInterfaceCarrinho() {
+    const lista = document.getElementById('cart-items');
+    const contador = document.getElementById('cart-count');
+    const totalElem = document.getElementById('cart-total');
+    
+    lista.innerHTML = '';
+    let total = 0;
+    
+    carrinho.forEach((item, index) => {
+        total += item.valor;
+        lista.innerHTML += `
+            <div class="cart-item">
+                <span>${item.nome}</span>
+                <span>R$ ${item.valor.toFixed(2)}</span>
+            </div>
+        `;
+    });
+    
+    contador.innerText = carrinho.length;
+    totalElem.innerText = `R$ ${total.toFixed(2)}`;
+}
+
+function toggleCart() {
+    document.getElementById('cart-sidebar').classList.toggle('active');
+}
+
+function goToCheckout() {
+    if(carrinho.length === 0) {
+        alert("Sua sacola está vazia!");
+        return;
+    }
+    toggleCart();
+    document.getElementById('products-view').style.display = 'none';
+    document.getElementById('checkout-section').style.display = 'block';
+}
+
+// Renderizar produtos com a função de clique
+const produtos = [
+    { nome: "Moletom Archive", preco: "R$ 490,00", cor: "#1a1a1a" },
+    { nome: "Calça Técnica", preco: "R$ 380,00", cor: "#151515" },
+    { nome: "Camiseta Essence", preco: "R$ 190,00", cor: "#1d1d1d" }
 ];
 
-// Gerar produtos dinamicamente
 const grid = document.getElementById('grid');
-products.forEach(p => {
+produtos.forEach(p => {
     grid.innerHTML += `
         <div class="product-card">
-            <div style="width: 100%; height: 100%; background: ${p.color}; position: absolute; top:0; left:0; z-index:-1"></div>
-            <h3>${p.name}</h3>
-            <span>${p.price}</span>
+            <div style="width: 100%; height: 100%; background: ${p.cor}; position: absolute; top:0; left:0; z-index:-1"></div>
+            <h3>${p.nome}</h3>
+            <span>${p.preco}</span>
+            <button class="buy-btn" onclick="adicionarAoCarrinho('${p.nome}', '${p.preco}')">ADICIONAR</button>
         </div>
     `;
 });
 
-// Efeito de Inclinação (Tilt) no Card de Login
-const card = document.getElementById('tilt-card');
-document.addEventListener('mousemove', (e) => {
-    if(document.getElementById('auth-container').style.display === 'none') return;
-    
-    let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-    let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-    card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-});
-
-// Lógica de Cadastro
-document.getElementById('register-form').addEventListener('submit', function(e) {
+// Finalizar pedido
+document.getElementById('checkout-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('name-input').value;
-    
-    document.body.style.overflow = 'hidden';
-    card.style.transition = '1s ease';
-    card.style.transform = 'translateZ(1000px) rotateX(90deg)';
-    card.style.opacity = '0';
-
-    setTimeout(() => {
-        document.getElementById('auth-container').style.display = 'none';
-        document.getElementById('shop-content').style.display = 'block';
-        document.getElementById('user-display').innerText = name.toUpperCase();
-        document.body.style.overflow = 'auto';
-    }, 1000);
+    alert("Pedido realizado com sucesso! Você receberá a confirmação por e-mail.");
+    location.reload(); // Reinicia a loja
 });
