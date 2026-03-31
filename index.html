@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARQUIVO MODERNO | Oficial</title>
+    <title>ARQUIVO MODERNO | Loja Oficial</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="auth-screen" class="full-screen">
         <div class="auth-card">
             <h1>ARQUIVO<br>MODERNO</h1>
-            <p>Acesso exclusivo para membros.</p>
+            <p>Faça login para acessar a nova coleção.</p>
             <form id="login-form">
                 <input type="text" id="user-input" placeholder="Nome Completo" required>
-                <input type="email" placeholder="E-mail" required>
-                <button type="submit">ENTRAR NA LOJA</button>
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">ACESSAR LOJA</button>
             </form>
         </div>
     </div>
@@ -27,34 +28,41 @@
             <div class="cart-btn" onclick="toggleCart()">SACOLA (<span id="cart-num">0</span>)</div>
         </nav>
 
-        <section class="products-grid" id="product-container"></section>
+        <header class="hero">
+            <h2>COLEÇÃO 2026</h2>
+            <p>Peças exclusivas com envio imediato.</p>
+        </header>
+
+        <section class="products-grid" id="product-container">
+            </section>
     </main>
 
     <aside id="cart-sidebar" class="sidebar">
         <div class="sidebar-header">
             <h3>Sua Sacola</h3>
-            <button onclick="toggleCart()">FECHAR</button>
+            <button class="close-btn" onclick="toggleCart()">FECHAR</button>
         </div>
         <div id="cart-list"></div>
         <div class="sidebar-footer">
             <p>Total: <strong id="total-price">R$ 0,00</strong></p>
-            <button onclick="showCheckout()">FINALIZAR COMPRA</button>
+            <button class="checkout-btn" onclick="showCheckout()">FINALIZAR COMPRA</button>
         </div>
     </aside>
 
     <div id="checkout-screen" class="full-screen hidden">
         <div class="checkout-box">
             <h2>Finalizar Pedido</h2>
-            <div class="checkout-form">
-                <input type="text" placeholder="CEP">
-                <input type="text" placeholder="Endereço">
-                <select>
-                    <option>Cartão de Crédito (10x)</option>
-                    <option>Pix (Desconto de 5%)</option>
+            <form id="final-form" onsubmit="finishOrder(event)">
+                <input type="text" placeholder="CEP" required>
+                <input type="text" placeholder="Endereço de Entrega" required>
+                <select required>
+                    <option value="">Forma de Pagamento</option>
+                    <option value="pix">Pix (5% de desconto)</option>
+                    <option value="cartao">Cartão de Crédito em até 10x</option>
                 </select>
-                <button onclick="finishOrder()">CONFIRMAR PAGAMENTO</button>
-                <button class="back-btn" onclick="hideCheckout()">Voltar</button>
-            </div>
+                <button type="submit">CONFIRMAR COMPRA</button>
+                <button type="button" class="back-btn" onclick="hideCheckout()">Voltar para a Loja</button>
+            </form>
         </div>
     </div>
 
